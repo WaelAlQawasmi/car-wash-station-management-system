@@ -1,10 +1,13 @@
 <?php
 
+require_once __DIR__ . '/../app/Core/Database.php';
+
+use App\Core\Database;
+
+
 try {
     // Connect to MySQL server (without selecting a DB, since schema.sql creates it)
-    $pdo = new PDO('mysql:host=127.0.0.1;port=3306', 'root', '', [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
+     $pdo = Database::getConnection();
 
     echo "Connected to MySQL server.\n";
 
