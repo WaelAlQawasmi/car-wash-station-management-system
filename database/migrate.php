@@ -12,8 +12,8 @@ try {
     echo "Connected to MySQL server.\n";
 
     // Drop and recreate the database to ensure clean setup
-    $pdo->exec("DROP DATABASE IF EXISTS car_stashen");
-    echo "Old database dropped.\n";
+    // $pdo->exec("DROP DATABASE IF EXISTS car_stashen");
+    // echo "Old database dropped.\n";
 
     $sql = file_get_contents(__DIR__ . '/schema.sql');
     if ($sql === false) {

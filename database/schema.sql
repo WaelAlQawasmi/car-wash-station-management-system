@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS car_stashen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE car_stashen;
+-- CREATE DATABASE IF NOT EXISTS dcteam_car CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE dcteam_car;
 
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
