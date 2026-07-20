@@ -1,7 +1,11 @@
 RewriteEngine On
 RewriteBase /
 
-# Route all requests to the public front controller
+# Allow direct access to the public entry point and assets
+RewriteRule ^$ public/index.php [L]
+RewriteRule ^public/?$ public/index.php [L]
+
+# Route all other requests to the front controller
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ public/index.php [L,QSA]
+RewriteRule . public/index.php [L]
