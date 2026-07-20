@@ -30,6 +30,7 @@ use App\Controllers\WorkOrderController;
 use App\Controllers\POSController;
 use App\Controllers\InventoryController;
 use App\Controllers\SettingsController;
+use App\Controllers\UserController;
 use App\Core\Container;
 use App\Core\Router;
 
@@ -83,6 +84,13 @@ $router->add('POST', '/pos/checkout', [POSController::class, 'checkout']);
 $router->add('GET', '/inventory', [InventoryController::class, 'index']);
 $router->add('POST', '/inventory/save', [InventoryController::class, 'save']);
 $router->add('POST', '/inventory/adjust', [InventoryController::class, 'adjust']);
+
+// User Management (Super Admin only)
+$router->add('GET',  '/users',        [UserController::class, 'index']);
+$router->add('GET',  '/api/users',    [UserController::class, 'apiList']);
+$router->add('POST', '/users/save',   [UserController::class, 'save']);
+$router->add('POST', '/users/toggle', [UserController::class, 'toggle']);
+$router->add('POST', '/users/delete', [UserController::class, 'delete']);
 
 // Settings / Utilities
 $router->add('GET', '/settings', [SettingsController::class, 'index']);

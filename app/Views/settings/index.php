@@ -1,29 +1,27 @@
-<?php
-use App\Core\Csrf;
-?>
+<?php use App\Core\Csrf; ?>
 <div class="row g-4">
     <!-- Main Configuration panel -->
     <div class="col-lg-6">
         <!-- Language / Branch select card -->
         <div class="card card-soft mb-4">
             <div class="card-body p-4">
-                <h5 class="fw-bold mb-3"><i class="bi bi-gear-fill me-2 text-primary"></i>System Configuration</h5>
+                <h5 class="fw-bold mb-3"><i class="bi bi-gear-fill me-2 text-primary"></i><?= __('system_config') ?></h5>
                 
                 <div class="mb-4">
-                    <label class="form-label small fw-medium">Active Branch (Location)</label>
+                    <label class="form-label small fw-medium"><?= __('active_branch') ?></label>
                     <select class="form-select" disabled>
                         <option>Riyadh Main Branch (Olaya Street)</option>
                         <option>Jeddah North Branch (King Road)</option>
                         <option>Dammam Central Branch (Khobar Road)</option>
                     </select>
-                    <small class="text-muted text-xs">Multi-branch management is active. This staff session is locked to Riyadh Main Branch.</small>
+                    <small class="text-muted text-xs"><?= __('branch_locked_hint') ?></small>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label small fw-medium">System Locale (Language)</label>
+                    <label class="form-label small fw-medium"><?= __('system_locale') ?></label>
                     <div class="d-flex gap-2">
                         <a href="/settings/set_lang?lang=en" class="btn btn-outline-secondary flex-grow-1 <?= \App\Services\LanguageService::getLocale() === 'en' ? 'active' : '' ?>">English</a>
-                        <a href="/settings/set_lang?lang=ar" class="btn btn-outline-secondary flex-grow-1 <?= \App\Services\LanguageService::getLocale() === 'ar' ? 'active' : '' ?>">العربية (Arabic)</a>
+                        <a href="/settings/set_lang?lang=ar" class="btn btn-outline-secondary flex-grow-1 <?= \App\Services\LanguageService::getLocale() === 'ar' ? 'active' : '' ?>">العربية</a>
                     </div>
                 </div>
             </div>
@@ -33,10 +31,10 @@ use App\Core\Csrf;
         <div class="card card-soft">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-database-fill-gear me-2 text-warning"></i>Database Backups & Restore</h5>
+                    <h5 class="fw-bold mb-0"><i class="bi bi-database-fill-gear me-2 text-warning"></i><?= __('db_backups') ?></h5>
                     <form method="post" action="/settings/backup" style="display:inline;">
                         <?= Csrf::tokenField() ?>
-                        <button class="btn btn-warning btn-sm"><i class="bi bi-cloud-arrow-down-fill me-1"></i>Create Backup</button>
+                        <button class="btn btn-warning btn-sm"><i class="bi bi-cloud-arrow-down-fill me-1"></i><?= __('create_backup') ?></button>
                     </form>
                 </div>
 
@@ -44,15 +42,15 @@ use App\Core\Csrf;
                     <table class="table table-sm align-middle text-sm">
                         <thead>
                             <tr>
-                                <th>Backup File</th>
-                                <th>Size</th>
-                                <th>Created At</th>
-                                <th class="text-end">Action</th>
+                                <th><?= __('backup_file') ?></th>
+                                <th><?= __('size') ?></th>
+                                <th><?= __('date') ?></th>
+                                <th class="text-end"><?= __('action') ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (empty($backups)): ?>
-                                <tr><td colspan="4" class="text-center text-muted py-3">No backups found in local directory.</td></tr>
+                                <tr><td colspan="4" class="text-center text-muted py-3"><?= __('no_backups') ?></td></tr>
                             <?php else: ?>
                                 <?php foreach ($backups as $b): ?>
                                     <tr>
@@ -60,10 +58,10 @@ use App\Core\Csrf;
                                         <td><?= htmlspecialchars($b['size']) ?></td>
                                         <td class="text-muted text-xs"><?= htmlspecialchars($b['created_at']) ?></td>
                                         <td class="text-end">
-                                            <form method="post" action="/settings/restore" style="display:inline;" onsubmit="return confirm('Restore database from this backup? Current operational tables will be overwritten.');">
+                                            <form method="post" action="/settings/restore" style="display:inline;" onsubmit="return confirm('<?= __('restore_confirm') ?>');">
                                                 <?= Csrf::tokenField() ?>
                                                 <input type="hidden" name="filename" value="<?= $b['filename'] ?>">
-                                                <button class="btn btn-danger btn-xs"><i class="bi bi-arrow-counterclockwise me-1"></i>Restore</button>
+                                                <button class="btn btn-danger btn-xs"><i class="bi bi-arrow-counterclockwise me-1"></i><?= __('restore') ?></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -80,10 +78,10 @@ use App\Core\Csrf;
     <div class="col-lg-6">
         <div class="card card-soft">
             <div class="card-body p-4">
-                <h5 class="fw-bold mb-3"><i class="bi bi-shield-check me-2 text-success"></i>Audit & Activity History</h5>
+                <h5 class="fw-bold mb-3"><i class="bi bi-shield-check me-2 text-success"></i><?= __('audit_activity') ?></h5>
                 <div class="d-flex flex-column gap-3" style="max-height: 480px; overflow-y: auto;">
                     <?php if (empty($auditLogs)): ?>
-                        <div class="text-center py-5 text-muted">No audit logs recorded in system.</div>
+                        <div class="text-center py-5 text-muted"><?= __('no_audit_logs') ?></div>
                     <?php else: ?>
                         <?php foreach ($auditLogs as $log): ?>
                             <div class="d-flex gap-2 text-sm border-bottom pb-2">
@@ -94,7 +92,7 @@ use App\Core\Csrf;
                                         (<span class="text-capitalize text-muted text-xs"><?= str_replace('_', ' ', htmlspecialchars($log['user_role'] ?? 'Guest')) ?></span>)
                                     </div>
                                     <div class="text-dark my-1 text-xs">
-                                        Action: <span class="badge bg-primary-subtle text-primary"><?= htmlspecialchars($log['action']) ?></span> on <code><?= htmlspecialchars($log['entity_type']) ?></code>
+                                        <?= __('audit_action_on') ?>: <span class="badge bg-primary-subtle text-primary"><?= htmlspecialchars($log['action']) ?></span> on <code><?= htmlspecialchars($log['entity_type']) ?></code>
                                     </div>
                                     <?php if ($log['details']): ?>
                                         <div class="bg-body-tertiary p-2 rounded text-xs text-muted font-monospace text-wrap mb-1" style="max-width:380px;">

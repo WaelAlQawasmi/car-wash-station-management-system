@@ -62,6 +62,8 @@ Requests enter through public/index.php, which initializes the session, register
 
 1. Create a MySQL database named car_stashen.
 2. Import database/schema.sql.
+>  php database/migrate.php
+>  php database/seeder.php
 3. Update config/app.php with your database credentials.
 4. Serve the project from the public directory.
 

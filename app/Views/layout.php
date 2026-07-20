@@ -68,6 +68,12 @@ $user = $_SESSION['user'] ?? ['name' => 'Staff', 'role' => 'employee'];
                         <i class="bi bi-sliders2"></i>
                         <span><?= __('settings') ?></span>
                     </a>
+                    <?php if (($user['role'] ?? '') === 'super_admin'): ?>
+                    <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'users/index') ? 'active' : '' ?>" href="/users">
+                        <i class="bi bi-people-fill"></i>
+                        <span><?= __('user_management') ?></span>
+                    </a>
+                    <?php endif; ?>
                 </nav>
             </div>
             
