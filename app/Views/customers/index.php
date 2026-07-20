@@ -1,6 +1,4 @@
-<?php
-use App\Core\Csrf;
-?>
+<?php use App\Core\Csrf; ?>
 <div class="card card-soft">
     <div class="card-body p-4">
         
@@ -8,7 +6,7 @@ use App\Core\Csrf;
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
             <div>
                 <h5 class="fw-bold mb-1"><?= __('customers') ?></h5>
-                <p class="text-muted mb-0 small">Create, edit, and view customers and their vehicles history</p>
+                <p class="text-muted mb-0 small"><?= __('customers_desc') ?></p>
             </div>
             <div class="d-flex gap-2">
                 <input type="text" class="form-control form-control-sm" style="max-width: 250px;" placeholder="<?= __('search') ?>" data-search-table="customersTable">
@@ -31,13 +29,13 @@ use App\Core\Csrf;
                 </thead>
                 <tbody>
                     <?php if (empty($customers)): ?>
-                        <tr><td colspan="6" class="text-center text-muted py-4">No customers found.</td></tr>
+                        <tr><td colspan="6" class="text-center text-muted py-4"><?= __('no_customers') ?></td></tr>
                     <?php else: ?>
                         <?php foreach ($customers as $c): ?>
                             <tr>
                                 <td>
                                     <div class="fw-bold"><?= htmlspecialchars($c->fullName) ?></div>
-                                    <small class="text-muted">ID: #<?= (int) $c->id ?></small>
+                                    <small class="text-muted"><?= __('id_label') ?>: #<?= (int) $c->id ?></small>
                                 </td>
                                 <td><?= htmlspecialchars($c->phone) ?></td>
                                 <td><?= htmlspecialchars($c->email) ?: '-' ?></td>
@@ -65,7 +63,7 @@ use App\Core\Csrf;
                                             <i class="bi bi-pencil"></i>
                                         </button>
                                         <!-- Delete trigger -->
-                                        <form method="post" action="/customers/delete" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this customer?');">
+                                        <form method="post" action="/customers/delete" style="display:inline;" onsubmit="return confirm('<?= __('confirm_delete_customer') ?>');">
                                             <?= Csrf::tokenField() ?>
                                             <input type="hidden" name="id" value="<?= $c->id ?>">
                                             <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
@@ -113,10 +111,10 @@ use App\Core\Csrf;
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium"><?= __('membership') ?></label>
                             <select class="form-select" name="membership_type" id="customerMembershipField">
-                                <option value="standard">Standard</option>
-                                <option value="silver">Silver</option>
-                                <option value="gold">Gold</option>
-                                <option value="platinum">Platinum</option>
+                                <option value="standard"><?= __('membership_standard') ?></option>
+                                <option value="silver"><?= __('membership_silver') ?></option>
+                                <option value="gold"><?= __('membership_gold') ?></option>
+                                <option value="platinum"><?= __('membership_platinum') ?></option>
                             </select>
                         </div>
                     </div>
@@ -135,7 +133,7 @@ use App\Core\Csrf;
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold"><i class="bi bi-car-front-fill me-2 text-primary"></i>Customer Vehicles</h5>
+                <h5 class="modal-title fw-bold"><i class="bi bi-car-front-fill me-2 text-primary"></i><?= __('customer_vehicles') ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -193,10 +191,10 @@ use App\Core\Csrf;
                         <div class="col-md-3 mb-3">
                             <label class="form-label small fw-medium"><?= __('fuel_type') ?></label>
                             <select class="form-select form-select-sm" name="fuel_type">
-                                <option value="petrol">Petrol</option>
-                                <option value="diesel">Diesel</option>
-                                <option value="hybrid">Hybrid</option>
-                                <option value="electric">Electric</option>
+                                <option value="petrol"><?= __('fuel_petrol') ?></option>
+                                <option value="diesel"><?= __('fuel_diesel') ?></option>
+                                <option value="hybrid"><?= __('fuel_hybrid') ?></option>
+                                <option value="electric"><?= __('fuel_electric') ?></option>
                             </select>
                         </div>
                     </div>

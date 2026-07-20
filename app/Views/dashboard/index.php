@@ -81,7 +81,7 @@ $isRtl = \App\Services\LanguageService::isRtl();
                 <h5 class="fw-bold mb-4"><i class="bi bi-star-fill me-2 text-warning"></i><?= __('top_services') ?></h5>
                 <div class="d-flex flex-column gap-3">
                     <?php if (empty($summary['top_services'])): ?>
-                        <div class="text-center py-4 text-muted">No transaction data yet.</div>
+                        <div class="text-center py-4 text-muted"><?= __('no_transaction_data') ?></div>
                     <?php else: ?>
                         <?php foreach (($summary['top_services'] ?? []) as $service): ?>
                             <div class="d-flex justify-content-between align-items-center p-3 rounded bg-body-tertiary">
@@ -125,7 +125,7 @@ $isRtl = \App\Services\LanguageService::isRtl();
                 <h5 class="fw-bold mb-3"><i class="bi bi-heart-fill me-2 text-danger"></i><?= __('best_customers') ?></h5>
                 <div class="d-flex flex-column gap-2">
                     <?php if (empty($summary['best_customers'])): ?>
-                        <div class="text-center py-4 text-muted">No sales data yet.</div>
+                        <div class="text-center py-4 text-muted"><?= __('no_sales_data') ?></div>
                     <?php else: ?>
                         <?php foreach (($summary['best_customers'] ?? []) as $customer): ?>
                             <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
@@ -144,10 +144,10 @@ $isRtl = \App\Services\LanguageService::isRtl();
             <div class="card-body p-4">
                 <h5 class="fw-bold mb-3"><i class="bi bi-award-fill me-2 text-warning"></i><?= __('top_employees') ?></h5>
                 <div class="d-flex flex-column gap-2">
-                    <?php foreach (($summary['top_employees'] ?? []) as $employee): ?>
+                    <?php foreach (($summary['top_employees'] ?? []) as $emp): ?>
                         <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                            <span class="fw-semibold"><?= htmlspecialchars($employee['name']) ?></span>
-                            <span class="badge bg-success bg-opacity-10 text-success"><?= (int) $employee['score'] ?>% score</span>
+                            <span class="fw-semibold"><?= htmlspecialchars($emp['name']) ?></span>
+                            <span class="badge bg-success bg-opacity-10 text-success"><?= (int) $emp['score'] ?>% <?= __('score') ?></span>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -161,7 +161,7 @@ $isRtl = \App\Services\LanguageService::isRtl();
                 <h5 class="fw-bold mb-3"><i class="bi bi-clock-history me-2 text-info"></i><?= __('audit_logs') ?></h5>
                 <div class="d-flex flex-column gap-3">
                     <?php if (empty($summary['recent_activities'])): ?>
-                        <div class="text-center py-4 text-muted">No system log data.</div>
+                        <div class="text-center py-4 text-muted"><?= __('no_system_log') ?></div>
                     <?php else: ?>
                         <?php foreach (($summary['recent_activities'] ?? []) as $log): ?>
                             <div class="d-flex gap-2">
@@ -185,9 +185,9 @@ if (ctx) {
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+      labels: ['<?= __('mon') ?>','<?= __('tue') ?>','<?= __('wed') ?>','<?= __('thu') ?>','<?= __('fri') ?>','<?= __('sat') ?>','<?= __('sun') ?>'],
       datasets: [{
-        label: 'Revenue',
+        label: '<?= __('revenue_label') ?>',
         data: [4200, 5100, 4700, 6200, 5900, 7600, 8900],
         borderColor: '#2563eb',
         backgroundColor: 'rgba(37,99,235,0.08)',

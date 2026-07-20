@@ -30,7 +30,9 @@ $user = $_SESSION['user'] ?? ['name' => 'Staff', 'role' => 'employee'];
     <div class="row h-100 g-0">
         
         <!-- Sidebar Navigation Drawer -->
-        <aside class="col-lg-2 col-md-3 sidebar p-3 d-flex flex-column justify-content-between d-none d-md-flex">
+        <!-- Mobile sidebar backdrop overlay -->
+        <div class="sidebar-backdrop d-none" id="sidebarBackdrop"></div>
+        <aside class="col-lg-2 col-md-3 sidebar p-3 d-flex flex-column justify-content-between d-none d-md-flex" id="mainSidebar">
             <div>
                 <div class="d-flex align-items-center gap-2 mb-4 mt-2">
                     <div class="stat-icon bg-primary bg-opacity-10 text-white rounded-circle"><i class="bi bi-car-front-fill fs-4 text-primary"></i></div>
