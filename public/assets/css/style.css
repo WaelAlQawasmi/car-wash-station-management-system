@@ -1,0 +1,245 @@
+/* Car Stashen ERP - Premium Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --font-primary: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Premium Indigo-Blue Theme */
+    --primary-gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    --secondary-gradient: linear-gradient(135deg, #10b981, #047857);
+    --warning-gradient: linear-gradient(135deg, #f59e0b, #b45309);
+    --danger-gradient: linear-gradient(135deg, #ef4444, #b91c1c);
+    --accent-glow: 0 0 15px rgba(59, 130, 246, 0.35);
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: #f3f4f6;
+    color: #1f2937;
+    overflow-x: hidden;
+    transition: var(--transition-smooth);
+}
+
+/* Dark Mode Overrides */
+[data-bs-theme="dark"] body {
+    background-color: #0b0f19;
+    color: #f3f4f6;
+}
+
+/* Sidebar Custom Styling */
+.sidebar {
+    background: linear-gradient(180deg, #0f172a, #030712);
+    min-height: 100vh;
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.sidebar .nav-link {
+    color: #94a3b8;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin: 4px 0;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar .nav-link i {
+    font-size: 1.15rem;
+}
+
+.sidebar .nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+html[dir="rtl"] .sidebar .nav-link:hover {
+    transform: translateX(-4px);
+}
+
+.sidebar .nav-link.active {
+    color: #ffffff;
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* Card Improvements */
+.card-soft {
+    background-color: #ffffff;
+    border: 1px solid rgba(243, 244, 246, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: var(--transition-smooth);
+}
+
+[data-bs-theme="dark"] .card-soft {
+    background-color: #111827;
+    border: 1px solid rgba(31, 41, 55, 0.8);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+}
+
+.card-soft:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+[data-bs-theme="dark"] .card-soft:hover {
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Stat Icons */
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+/* Glassmorphism Quick Actions */
+.btn-action-premium {
+    border-radius: 14px;
+    padding: 12px;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+/* Custom Table Design */
+.table-responsive {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    color: #6b7280;
+    padding: 14px 18px;
+    background-color: rgba(243, 244, 246, 0.4);
+}
+
+[data-bs-theme="dark"] .table th {
+    color: #9ca3af;
+    background-color: rgba(31, 41, 55, 0.4);
+}
+
+.table td {
+    padding: 14px 18px;
+    font-size: 0.92rem;
+}
+
+/* Status Badges */
+.badge-status {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+/* Kanban / Work Order Pipeline Board styling */
+.pipeline-column {
+    background-color: rgba(243, 244, 246, 0.6);
+    border-radius: 16px;
+    padding: 16px;
+    min-height: 500px;
+}
+
+[data-bs-theme="dark"] .pipeline-column {
+    background-color: rgba(17, 24, 39, 0.6);
+}
+
+.pipeline-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    border-left: 4px solid #94a3b8;
+    transition: var(--transition-smooth);
+}
+
+[data-bs-theme="dark"] .pipeline-card {
+    background-color: #1f2937;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.pipeline-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.pipeline-card.priority-high {
+    border-left-color: #ef4444;
+}
+
+.pipeline-card.priority-vip {
+    border-left-color: #d946ef;
+}
+
+.pipeline-card.priority-normal {
+    border-left-color: #3b82f6;
+}
+
+html[dir="rtl"] .pipeline-card {
+    border-left: 0;
+    border-right: 4px solid #94a3b8;
+}
+
+html[dir="rtl"] .pipeline-card.priority-high {
+    border-right-color: #ef4444;
+}
+
+html[dir="rtl"] .pipeline-card.priority-vip {
+    border-right-color: #d946ef;
+}
+
+html[dir="rtl"] .pipeline-card.priority-normal {
+    border-right-color: #3b82f6;
+}
+
+/* Bay timer style */
+.bay-timer-widget {
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* POS Item Grid */
+.pos-items-grid {
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.pos-cart-list {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+/* Micro animations / glow effects */
+.glow-primary {
+    box-shadow: var(--accent-glow);
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -104,6 +104,33 @@ CREATE TABLE IF NOT EXISTS audit_logs (
     CONSTRAINT fk_audit_logs_user FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS inventory (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    sku VARCHAR(100) NULL UNIQUE,
+    barcode VARCHAR(100) NULL UNIQUE,
+    category VARCHAR(50) NOT NULL,
+    stock_quantity INT NOT NULL DEFAULT 0,
+    min_stock_level INT NOT NULL DEFAULT 5,
+    unit_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    supplier_name VARCHAR(150) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS stock_movements (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    inventory_id BIGINT UNSIGNED NOT NULL,
+    quantity_changed INT NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    user_id BIGINT UNSIGNED NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_stock_movements_inventory FOREIGN KEY (inventory_id) REFERENCES inventory(id) ON DELETE CASCADE,
+    CONSTRAINT fk_stock_movements_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_customers_phone ON customers(phone);
 CREATE INDEX idx_work_orders_status ON work_orders(status);
+CREATE INDEX idx_inventory_barcode ON inventory(barcode);
+

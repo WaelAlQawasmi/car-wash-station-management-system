@@ -5,6 +5,12 @@ namespace App\Core;
 class Router
 {
     private array $routes = [];
+    private ?Container $container = null;
+
+    public function __construct(?Container $container = null)
+    {
+        $this->container = $container;
+    }
 
     public function add(string $method, string $path, callable|array $handler): void
     {
@@ -34,7 +40,7 @@ class Router
                 }
 
                 [$controllerName, $methodName] = $handler;
-                $controller = new $controllerName();
+                $controller = ($this->container) ? $this->container->get($controllerName) : new $controllerName();
                 $controller->$methodName(...array_slice($matches, 1));
                 return;
             }
