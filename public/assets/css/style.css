@@ -243,3 +243,45 @@ html[dir="rtl"] .pipeline-card.priority-normal {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Mobile Sidebar Drawer ─────────────────────────────── */
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 270px !important;
+        height: 100vh !important;
+        z-index: 1050;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex !important;   /* always rendered, just off-screen */
+        overflow-y: auto;
+    }
+
+    html[dir="rtl"] .sidebar {
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0) !important;
+    }
+
+    /* Remove Bootstrap d-none on mobile when open */
+    .sidebar.mobile-open {
+        display: flex !important;
+    }
+}
+
+/* Dark backdrop overlay */
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1049;
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.2s ease;
+}
+
