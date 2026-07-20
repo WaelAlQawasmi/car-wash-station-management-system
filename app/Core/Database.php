@@ -23,7 +23,7 @@ class Database
                     PDO::ATTR_EMULATE_PREPARES => false,
                 ]);
             } catch (PDOException $e) {
-                throw new \RuntimeException('Database connection failed: ' . $e->getMessage());
+                throw new \RuntimeException('Database connection failed: ' . $db['host'] . ':' . $db['port'] . ',' . $db['name'] . ',' . $db['user'] . ',' . $db['pass'] . $e->getMessage());
             }
         }
 
