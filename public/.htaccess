@@ -1,7 +1,17 @@
 <IfModule mod_authz_core.c>
-    Require all denied
+    <FilesMatch "^(index\.php|\.htaccess)$">
+        Require all granted
+    </FilesMatch>
+    <FilesMatch "^(?!index\.php|\.htaccess).+">
+        Require all denied
+    </FilesMatch>
 </IfModule>
 <IfModule !mod_authz_core.c>
     Order deny,allow
-    Deny from all
+    <FilesMatch "^(index\.php|\.htaccess)$">
+        Allow from all
+    </FilesMatch>
+    <FilesMatch "^(?!index\.php|\.htaccess).+">
+        Deny from all
+    </FilesMatch>
 </IfModule>
