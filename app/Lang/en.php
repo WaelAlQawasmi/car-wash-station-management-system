@@ -191,7 +191,7 @@ return [
     'split_payment'          => 'Split Payment',
     'cash'                   => 'Cash',
     'visa'                   => 'Visa',
-    'mastercard'             => 'MasterCard',
+    'mastercard'             => 'CLIQ',
     'apple_pay'              => 'Apple Pay',
     'wallet'                 => 'Wallet',
     'checkout'               => 'Checkout',

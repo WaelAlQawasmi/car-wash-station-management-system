@@ -191,7 +191,7 @@ return [
     'split_payment'          => 'دفع مقسم',
     'cash'                   => 'نقداً',
     'visa'                   => 'فيزا',
-    'mastercard'             => 'ماستركارد',
+    'mastercard'             => 'كليك',
     'apple_pay'              => 'أبل باي',
     'wallet'                 => 'المحفظة',
     'checkout'               => 'إتمام الدفع',
