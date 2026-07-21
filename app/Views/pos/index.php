@@ -146,19 +146,19 @@ use App\Core\Csrf;
                         <!-- Calculations summary -->
                         <div class="d-flex justify-content-between small mb-1">
                             <span class="text-muted"><?= __('subtotal') ?>:</span>
-                            <span id="posSubtotal">$0.00</span>
+                            <span id="posSubtotal"> دينار 0.00</span>
                         </div>
                         <div class="d-flex justify-content-between small mb-1">
                             <span class="text-muted"><?= __('tax') ?> (VAT 15%):</span>
-                            <span id="posTax">$0.00</span>
+                            <span id="posTax"> دينار 0.00</span>
                         </div>
                         <div class="d-flex justify-content-between small mb-2">
                             <span class="text-muted"><?= __('discount') ?>:</span>
-                            <span id="posDiscountVal">-$0.00</span>
+                            <span id="posDiscountVal">-دينار 0.00</span>
                         </div>
                         <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2">
                             <span><?= __('total') ?>:</span>
-                            <span class="text-primary" id="posTotal">$0.00</span>
+                            <span class="text-primary" id="posTotal">دينار 0.00</span>
                         </div>
 
                         <button class="btn btn-primary w-100 mt-3 py-2 btn-action-premium" id="posSubmitBtn" disabled><i class="bi bi-credit-card me-2"></i><?= __('checkout') ?></button>
@@ -227,7 +227,7 @@ use App\Core\Csrf;
                         <?php if ($r['discount'] > 0): ?>
                             <div class="d-flex justify-content-between mb-1 text-danger">
                                 <span><?= __('discount') ?>:</span>
-                                <span>-$<?= number_format($r['discount'], 2) ?></span>
+                                <span>- دينار <?= number_format($r['discount'], 2) ?></span>
                             </div>
                         <?php endif; ?>
                         <div class="d-flex justify-content-between fw-bold border-top pt-2 fs-6">
@@ -361,7 +361,7 @@ function updatePOSCart() {
                         <button type="button" class="btn btn-light btn-xs p-1" style="width:20px; height:20px; line-height:10px;" onclick="adjustQty(${item.id}, '${item.type}', 1)">+</button>
                     </div>
                 </td>
-                <td>$${(item.price * item.qty).toFixed(2)}</td>
+                <td> دينار ${(item.price * item.qty).toFixed(2)}</td>
                 <td class="text-end">
                     <button type="button" class="btn btn-outline-danger btn-xs" onclick="removeFromCart(${item.id}, '${item.type}')"><i class="bi bi-trash"></i></button>
                 </td>
