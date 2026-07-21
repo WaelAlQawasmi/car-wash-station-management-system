@@ -182,9 +182,13 @@ $isRtl = \App\Services\LanguageService::isRtl();
 </div>
 
 
+  <?php else: ?>
+    <script>
+        window.location.href = '/pos';  
+    </script>
 
  <?php endif; ?>
-    l
+  
 
 <script>
 const ctx = document.getElementById('revenueChart');
