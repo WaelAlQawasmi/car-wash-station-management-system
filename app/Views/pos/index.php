@@ -37,7 +37,7 @@ use App\Core\Csrf;
                                     <h6 class="fw-bold text-dark mb-2"><?= htmlspecialchars($s->name) ?></h6>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <span class="fw-bold text-primary">$<?= number_format($s->price, 2) ?></span>
+                                    <span class="fw-bold text-primary">دينار<?= number_format($s->price, 2) ?></span>
                                     <button class="btn btn-outline-primary btn-sm rounded-circle p-1" style="width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center;" onclick="addToCart(<?= $s->id ?>, 'service', '<?= htmlspecialchars(addslashes($s->name)) ?>', <?= $s->price ?>)"><i class="bi bi-plus"></i></button>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@ use App\Core\Csrf;
                                     <small class="text-muted text-xs d-block mb-1"><?= __('barcode') ?>: <?= htmlspecialchars($i['barcode']) ?></small>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <span class="fw-bold text-success">$<?= number_format((float) $i['unit_price'], 2) ?></span>
+                                    <span class="fw-bold text-success">دينار<?= number_format((float) $i['unit_price'], 2) ?></span>
                                     <?php if ($i['stock_quantity'] > 0): ?>
                                         <button class="btn btn-outline-success btn-sm rounded-circle p-1" style="width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center;" onclick="addToCart(<?= $i['id'] ?>, 'product', '<?= htmlspecialchars(addslashes($i['name'])) ?>', <?= (float) $i['unit_price'] ?>)"><i class="bi bi-plus"></i></button>
                                     <?php else: ?>
@@ -209,7 +209,7 @@ use App\Core\Csrf;
                                 <tr>
                                     <td><?= htmlspecialchars($item['name']) ?></td>
                                     <td class="text-center"><?= $item['qty'] ?></td>
-                                    <td class="text-end">$<?= number_format($item['price'], 2) ?></td>
+                                    <td class="text-end">دينار<?= number_format($item['price'], 2) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -218,11 +218,11 @@ use App\Core\Csrf;
                     <div class="border-top pt-2 text-sm">
                         <div class="d-flex justify-content-between mb-1">
                             <span><?= __('subtotal') ?>:</span>
-                            <span>$<?= number_format($r['subtotal'], 2) ?></span>
+                            <span>دينار<?= number_format($r['subtotal'], 2) ?></span>
                         </div>
                         <div class="d-flex justify-content-between mb-1">
                             <span><?= __('vat_15') ?>:</span>
-                            <span>$<?= number_format($r['tax'], 2) ?></span>
+                            <span>دينار<?= number_format($r['tax'], 2) ?></span>
                         </div>
                         <?php if ($r['discount'] > 0): ?>
                             <div class="d-flex justify-content-between mb-1 text-danger">
@@ -232,7 +232,7 @@ use App\Core\Csrf;
                         <?php endif; ?>
                         <div class="d-flex justify-content-between fw-bold border-top pt-2 fs-6">
                             <span><?= __('receipt_total') ?>:</span>
-                            <span>$<?= number_format($r['total'], 2) ?></span>
+                            <span>دينار<?= number_format($r['total'], 2) ?></span>
                         </div>
                     </div>
 

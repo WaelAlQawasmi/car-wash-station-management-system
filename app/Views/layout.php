@@ -42,10 +42,12 @@ $user = $_SESSION['user'] ?? ['name' => 'Staff', 'role' => 'employee'];
                     </div>
                 </div>
                 <nav class="nav flex-column gap-1">
-                    <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'dashboard/index') ? 'active' : '' ?>" href="/dashboard">
-                        <i class="bi bi-speedometer2"></i>
-                        <span><?= __('dashboard') ?></span>
-                    </a>
+                    <?php if (($user['role'] ?? '') === 'super_admin'): ?>
+                        <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'dashboard/index') ? 'active' : '' ?>" href="/dashboard">
+                            <i class="bi bi-speedometer2"></i>
+                            <span><?= __('dashboard') ?></span>
+                        </a>
+                    <?php endif; ?>
                     <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'work_orders/index') ? 'active' : '' ?>" href="/work_orders">
                         <i class="bi bi-calendar2-range"></i>
                         <span><?= __('work_order_pipeline') ?></span>
@@ -62,10 +64,12 @@ $user = $_SESSION['user'] ?? ['name' => 'Staff', 'role' => 'employee'];
                         <i class="bi bi-tools"></i>
                         <span><?= __('services') ?></span>
                     </a>
-                    <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'inventory/index') ? 'active' : '' ?>" href="/inventory">
-                        <i class="bi bi-box-seam"></i>
-                        <span><?= __('inventory') ?></span>
-                    </a>
+                    <?php if (($user['role'] ?? '') === 'super_admin'): ?>
+                        <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'inventory/index') ? 'active' : '' ?>" href="/inventory">
+                            <i class="bi bi-box-seam"></i>
+                            <span><?= __('inventory') ?></span>
+                        </a>
+                     <?php endif; ?>
                     <a class="nav-link rounded px-3 py-2 <?= ($contentTemplate === 'settings/index') ? 'active' : '' ?>" href="/settings">
                         <i class="bi bi-sliders2"></i>
                         <span><?= __('settings') ?></span>

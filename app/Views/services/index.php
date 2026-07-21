@@ -41,7 +41,7 @@ use App\Core\Csrf;
                                     <span class="badge bg-secondary bg-opacity-10 text-secondary text-capitalize px-3 py-1"><?= htmlspecialchars($s->category) ?></span>
                                 </td>
                                 <td><i class="bi bi-clock me-1 text-muted"></i><?= (int) $s->durationMinutes ?> min</td>
-                                <td class="fw-bold text-primary">$<?= number_format($s->price, 2) ?></td>
+                                <td class="fw-bold text-primary">دينار<?= number_format($s->price, 2) ?></td>
                                 <td><?= (float) $s->taxRate ?>%</td>
                                 <td><?= (float) $s->commissionRate ?>%</td>
                                 <td>
