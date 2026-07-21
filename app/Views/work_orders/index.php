@@ -7,16 +7,16 @@ use App\Core\Csrf;
         <div class="card card-soft">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="fw-bold mb-0"><i class="bi bi-cpu me-2 text-primary"></i>Service Bays Timer Status</h6>
+                    <h6 class="fw-bold mb-0"><i class="bi bi-cpu me-2 text-primary"></i><?= __('bays_status') ?></h6>
                     <button class="btn btn-primary btn-sm px-3" data-bs-toggle="modal" data-bs-target="#newOrderModal"><i class="bi bi-plus-circle me-1"></i><?= __('new_order') ?></button>
                 </div>
                 <div class="row g-3">
                     <?php foreach ($bays as $bayNum => $bay): ?>
                         <div class="col-md col-sm-6">
                             <div class="bay-timer-widget border p-3 rounded bg-body-tertiary text-center">
-                                <div class="text-xs text-muted mb-1">Bay #<?= $bayNum ?></div>
+                                <div class="text-xs text-muted mb-1"><?= __('bay_num') ?><?= $bayNum ?></div>
                                 <?php if ($bay['status'] === 'occupied'): ?>
-                                    <div class="badge bg-danger mb-2">Occupied</div>
+                                    <div class="badge bg-danger mb-2"><?= __('occupied') ?></div>
                                     <div class="fw-bold text-sm text-truncate"><?= htmlspecialchars($bay['order']['plate_number']) ?></div>
                                     <small class="text-xs d-block text-muted">ID: #<?= $bay['order']['id'] ?></small>
                                     <div class="d-flex gap-1 justify-content-center mt-2">
@@ -24,12 +24,12 @@ use App\Core\Csrf;
                                             <?= Csrf::tokenField() ?>
                                             <input type="hidden" name="id" value="<?= $bay['order']['id'] ?>">
                                             <input type="hidden" name="status" value="completed">
-                                            <button class="btn btn-success btn-xs py-0 px-2" title="Mark Completed"><i class="bi bi-check2"></i></button>
+                                            <button class="btn btn-success btn-xs py-0 px-2" title="<?= __('mark_completed') ?>"><i class="bi bi-check2"></i></button>
                                         </form>
                                     </div>
                                 <?php else: ?>
-                                    <div class="badge bg-success mb-2">Available</div>
-                                    <div class="text-muted text-xs py-1">Ready for car</div>
+                                    <div class="badge bg-success mb-2"><?= __('available') ?></div>
+                                    <div class="text-muted text-xs py-1"><?= __('ready_for_car') ?></div>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ use App\Core\Csrf;
                             <div class="small text-muted mb-3 border-top pt-2">
                                 <i class="bi bi-person me-1"></i><?= htmlspecialchars($o['customer_name']) ?><br>
                                 <?php if ($o['assigned_employee_id']): ?>
-                                    <i class="bi bi-person-badge me-1"></i>Assigned: <?= htmlspecialchars($o['employee_name']) ?> (Bay <?= $o['assigned_bay'] ?>)
+                                    <i class="bi bi-person-badge me-1"></i><?= __('assigned') ?>: <?= htmlspecialchars($o['employee_name']) ?> (<?= __('bay') ?> <?= $o['assigned_bay'] ?>)
                                 <?php endif; ?>
                             </div>
                             
@@ -89,25 +89,25 @@ use App\Core\Csrf;
                             <div class="d-flex justify-content-end gap-1 mt-2">
                                 <?php if ($statusKey === 'waiting'): ?>
                                     <button class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#assignModal" onclick="prepareAssignModal(<?= $o['id'] ?>)">
-                                        <i class="bi bi-play-fill me-1"></i>Start
+                                        <i class="bi bi-play-fill me-1"></i><?= __('start') ?>
                                     </button>
                                 <?php elseif ($statusKey === 'in_progress'): ?>
                                     <form method="post" action="/work_orders/update_status">
                                         <?= Csrf::tokenField() ?>
                                         <input type="hidden" name="id" value="<?= $o['id'] ?>">
                                         <input type="hidden" name="status" value="completed">
-                                        <button class="btn btn-success btn-xs"><i class="bi bi-check2 me-1"></i>Done</button>
+                                        <button class="btn btn-success btn-xs"><i class="bi bi-check2 me-1"></i><?= __('done') ?></button>
                                     </form>
                                 <?php elseif ($statusKey === 'completed'): ?>
                                     <form method="post" action="/work_orders/update_status">
                                         <?= Csrf::tokenField() ?>
                                         <input type="hidden" name="id" value="<?= $o['id'] ?>">
                                         <input type="hidden" name="status" value="delivered">
-                                        <button class="btn btn-info btn-xs text-white"><i class="bi bi-truck me-1"></i>Deliver</button>
+                                        <button class="btn btn-info btn-xs text-white"><i class="bi bi-truck me-1"></i><?= __('deliver') ?></button>
                                     </form>
                                 <?php endif; ?>
                                 
-                                <form method="post" action="/work_orders/delete" onsubmit="return confirm('Delete work order?');" style="display:inline;">
+                                <form method="post" action="/work_orders/delete" onsubmit="return confirm('<?= __('confirm_delete_order') ?>');" style="display:inline;">
                                     <?= Csrf::tokenField() ?>
                                     <input type="hidden" name="id" value="<?= $o['id'] ?>">
                                     <button class="btn btn-outline-danger btn-xs"><i class="bi bi-trash"></i></button>
@@ -126,7 +126,7 @@ use App\Core\Csrf;
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold">Start Work Order</h5>
+                <h5 class="modal-title fw-bold"><?= __('start_work_order') ?></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form method="post" action="/work_orders/update_status">
@@ -135,29 +135,29 @@ use App\Core\Csrf;
                 <input type="hidden" name="status" value="in_progress">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Assign Employee</label>
+                        <label class="form-label fw-medium"><?= __('assign_employee') ?></label>
                         <select class="form-select" name="assigned_employee_id" required>
-                            <option value="">-- Choose Employee --</option>
+                            <option value=""><?= __('choose_employee') ?></option>
                             <?php foreach ($employees as $emp): ?>
                                 <option value="<?= $emp['id'] ?>"><?= htmlspecialchars($emp['name']) ?> (<?= htmlspecialchars($emp['role']) ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-medium">Assign Bay</label>
+                        <label class="form-label fw-medium"><?= __('assign_bay') ?></label>
                         <select class="form-select" name="assigned_bay" required>
-                            <option value="">-- Choose Bay --</option>
+                            <option value=""><?= __('choose_bay') ?></option>
                             <?php foreach ($bays as $bayNum => $bay): ?>
                                 <option value="<?= $bayNum ?>" <?= $bay['status'] === 'occupied' ? 'disabled' : '' ?>>
-                                    Bay #<?= $bayNum ?> <?= $bay['status'] === 'occupied' ? '(Occupied)' : '(Available)' ?>
+                                    <?= __('bay_num') ?><?= $bayNum ?> <?= $bay['status'] === 'occupied' ? '(' . __('occupied') . ')' : '(' . __('available') . ')' ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary px-4">Start Service</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __('cancel') ?></button>
+                    <button class="btn btn-primary px-4"><?= __('start_service') ?></button>
                 </div>
             </form>
         </div>
@@ -178,7 +178,7 @@ use App\Core\Csrf;
                     <div class="mb-3">
                         <label class="form-label fw-medium"><?= __('select_customer') ?></label>
                         <select class="form-select" id="newOrderCustomer" name="customer_id" onchange="loadCustomerVehiclesForOrder()" required>
-                            <option value="">-- Choose Customer --</option>
+                            <option value=""><?= __('choose_customer') ?></option>
                             <?php foreach ($customers as $c): ?>
                                 <option value="<?= $c->id ?>"><?= htmlspecialchars($c->fullName) ?> (<?= htmlspecialchars($c->phone) ?>)</option>
                             <?php endforeach; ?>
@@ -188,14 +188,14 @@ use App\Core\Csrf;
                     <div class="mb-3">
                         <label class="form-label fw-medium"><?= __('select_vehicle') ?></label>
                         <select class="form-select" id="newOrderVehicle" name="vehicle_id" required disabled>
-                            <option value="">-- Select Customer First --</option>
+                            <option value=""><?= __('select_customer_first') ?></option>
                         </select>
                     </div>
                     
                     <div class="mb-3">
                         <label class="form-label fw-medium"><?= __('select_service') ?></label>
                         <select class="form-select" name="service_id" required>
-                            <option value="">-- Choose Service --</option>
+                            <option value=""><?= __('choose_service') ?></option>
                             <?php foreach ($services as $s): ?>
                                 <option value="<?= $s->id ?>"><?= htmlspecialchars($s->name) ?> ($<?= number_format($s->price, 2) ?>)</option>
                             <?php endforeach; ?>
@@ -206,23 +206,23 @@ use App\Core\Csrf;
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium"><?= __('priority') ?></label>
                             <select class="form-select" name="priority">
-                                <option value="normal">Normal</option>
-                                <option value="high">High</option>
-                                <option value="vip">VIP</option>
+                                <option value="normal"><?= __('priority_normal') ?></option>
+                                <option value="high"><?= __('priority_high') ?></option>
+                                <option value="vip"><?= __('priority_vip') ?></option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-medium"><?= __('status') ?></label>
                             <select class="form-select" name="status">
-                                <option value="waiting">Waiting</option>
-                                <option value="in_progress">In Progress</option>
+                                <option value="waiting"><?= __('waiting') ?></option>
+                                <option value="in_progress"><?= __('in_progress') ?></option>
                             </select>
                         </div>
                     </div>
                     
                     <div class="mb-3">
                         <label class="form-label fw-medium"><?= __('notes') ?></label>
-                        <textarea class="form-control" name="notes" rows="2" placeholder="Instructions/Vehicles issues..."></textarea>
+                        <textarea class="form-control" name="notes" rows="2" placeholder="<?= __('notes_placeholder') ?>"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -244,12 +244,12 @@ function loadCustomerVehiclesForOrder() {
     const vehicleSelect = document.getElementById('newOrderVehicle');
     
     if (!customerId) {
-        vehicleSelect.innerHTML = '<option value="">-- Select Customer First --</option>';
+        vehicleSelect.innerHTML = '<option value=""><?= __('select_customer_first') ?></option>';
         vehicleSelect.disabled = true;
         return;
     }
 
-    vehicleSelect.innerHTML = '<option value="">Loading vehicles...</option>';
+    vehicleSelect.innerHTML = '<option value=""><?= __('loading_vehicles') ?></option>';
     vehicleSelect.disabled = true;
 
     fetch(`/customers/vehicles?customer_id=${customerId}`)
@@ -257,7 +257,7 @@ function loadCustomerVehiclesForOrder() {
         .then(vehicles => {
             vehicleSelect.innerHTML = '';
             if (vehicles.length === 0) {
-                vehicleSelect.innerHTML = '<option value="">No vehicles found - please add vehicle in Customer page first</option>';
+                vehicleSelect.innerHTML = '<option value=""><?= __('no_vehicles_found') ?></option>';
                 return;
             }
             vehicleSelect.disabled = false;
@@ -269,7 +269,7 @@ function loadCustomerVehiclesForOrder() {
             });
         })
         .catch(err => {
-            vehicleSelect.innerHTML = '<option value="">Failed to load vehicles</option>';
+            vehicleSelect.innerHTML = '<option value=""><?= __('failed_load_vehicles') ?></option>';
         });
 }
 </script>

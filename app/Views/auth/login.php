@@ -79,11 +79,11 @@ $isRtl = LanguageService::isRtl();
                         <?= Csrf::tokenField() ?>
                         <div class="mb-3">
                             <label class="form-label text-dark fw-medium"><?= __('email') ?></label>
-                            <input type="email" class="form-control" name="email" value="admin@carstashen.com" placeholder="name@carstashen.com" required>
+                            <input type="email" class="form-control" name="email" value="admin@carstashen.com" placeholder="<?= __('email_placeholder') ?>" required>
                         </div>
                         <div class="mb-4">
                             <label class="form-label text-dark fw-medium"><?= __('password') ?></label>
-                            <input type="password" class="form-control" name="password" value="password123" placeholder="••••••••" required>
+                            <input type="password" class="form-control" name="password" value="password123" placeholder="<?= __('password_placeholder_login') ?>" required>
                         </div>
                         <button class="btn btn-primary w-100 shadow-sm"><?= __('login') ?></button>
                     </form>
@@ -91,7 +91,7 @@ $isRtl = LanguageService::isRtl();
             </div>
             
             <div class="text-center mt-4">
-                <small class="text-white-50">&copy; 2026 Car Stashen ERP. All rights reserved.</small>
+                <small class="text-white-50"><?= __('copyright') ?></small>
             </div>
         </div>
     </div>
