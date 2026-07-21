@@ -56,7 +56,7 @@ use App\Core\Csrf;
                                             </div>
                                             <small class="text-muted text-xs"><?= __('min_limit') ?>: <?= (int) $item['min_stock_level'] ?></small>
                                         </td>
-                                        <td class="fw-bold text-primary">$<?= number_format((float) $item['unit_price'], 2) ?></td>
+                                        <td class="fw-bold text-primary">دينار<?= number_format((float) $item['unit_price'], 2) ?></td>
                                         <td class="text-end">
                                             <div class="btn-group btn-group-sm">
                                                 <!-- Adjust Stock Trigger -->

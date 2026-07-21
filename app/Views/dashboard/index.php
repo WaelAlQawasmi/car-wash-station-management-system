@@ -2,6 +2,8 @@
 $summary = $summary ?? [];
 $isRtl = \App\Services\LanguageService::isRtl();
 ?>
+<?php if (($user['role']) == 'super_admin'): ?>
+
 <div class="row g-4 mb-4">
     <!-- Daily Revenue Card -->
     <div class="col-xl-3 col-md-6">
@@ -10,7 +12,7 @@ $isRtl = \App\Services\LanguageService::isRtl();
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <p class="text-muted mb-1 fw-medium"><?= __('daily_revenue') ?></p>
-                        <h3 class="fw-bold mb-0 text-gradient">$<?= number_format($summary['daily_revenue'] ?? 0, 2) ?></h3>
+                        <h3 class="fw-bold mb-0 text-gradient">دينار<?= number_format($summary['daily_revenue'] ?? 0, 2) ?></h3>
                     </div>
                     <div class="stat-icon bg-primary bg-opacity-10 text-primary"><i class="bi bi-cash-coin"></i></div>
                 </div>
@@ -24,7 +26,7 @@ $isRtl = \App\Services\LanguageService::isRtl();
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <p class="text-muted mb-1 fw-medium"><?= __('monthly_revenue') ?></p>
-                        <h3 class="fw-bold mb-0">$<?= number_format($summary['monthly_revenue'] ?? 0, 2) ?></h3>
+                        <h3 class="fw-bold mb-0">دينار<?= number_format($summary['monthly_revenue'] ?? 0, 2) ?></h3>
                     </div>
                     <div class="stat-icon bg-success bg-opacity-10 text-success"><i class="bi bi-graph-up-arrow"></i></div>
                 </div>
@@ -130,7 +132,7 @@ $isRtl = \App\Services\LanguageService::isRtl();
                         <?php foreach (($summary['best_customers'] ?? []) as $customer): ?>
                             <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
                                 <span class="fw-semibold text-truncate"><?= htmlspecialchars($customer['name']) ?></span>
-                                <span class="fw-bold text-success">$<?= number_format((float) $customer['spent'], 2) ?></span>
+                                <span class="fw-bold text-success">دينار<?= number_format((float) $customer['spent'], 2) ?></span>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -178,6 +180,11 @@ $isRtl = \App\Services\LanguageService::isRtl();
         </div>
     </div>
 </div>
+
+
+
+ <?php endif; ?>
+    l
 
 <script>
 const ctx = document.getElementById('revenueChart');
