@@ -232,7 +232,7 @@
                 showAlert(data.message);
             }
         } catch (e) {
-            showAlert('Network error. Please try again.');
+            showAlert('<?= __('network_error') ?>');
         } finally {
             btn.disabled = false;
             text.textContent = '<?= __('save') ?>';

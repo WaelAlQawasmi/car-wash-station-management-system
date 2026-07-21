@@ -8,7 +8,7 @@ use App\Core\Csrf;
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
             <div>
                 <h5 class="fw-bold mb-1"><?= __('services') ?></h5>
-                <p class="text-muted mb-0 small">Manage car wash packages, oil adjustments, and detailing catalog pricing</p>
+                <p class="text-muted mb-0 small"><?= __('services_desc') ?></p>
             </div>
             <div class="d-flex gap-2">
                 <input type="text" class="form-control form-control-sm" style="max-width: 250px;" placeholder="<?= __('search') ?>" data-search-table="servicesListTable">
@@ -32,7 +32,7 @@ use App\Core\Csrf;
                 </thead>
                 <tbody>
                     <?php if (empty($services)): ?>
-                        <tr><td colspan="8" class="text-center text-muted py-4">No services registered.</td></tr>
+                        <tr><td colspan="8" class="text-center text-muted py-4"><?= __('no_services') ?></td></tr>
                     <?php else: ?>
                         <?php foreach ($services as $s): ?>
                             <tr>
@@ -65,7 +65,7 @@ use App\Core\Csrf;
                                             <i class="bi bi-pencil"></i>
                                         </button>
                                         <!-- Delete Button -->
-                                        <form method="post" action="/services/delete" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                        <form method="post" action="/services/delete" style="display:inline;" onsubmit="return confirm('<?= __('confirm_delete_service') ?>');">
                                             <?= Csrf::tokenField() ?>
                                             <input type="hidden" name="id" value="<?= $s->id ?>">
                                             <button class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
@@ -100,9 +100,9 @@ use App\Core\Csrf;
                     <div class="mb-3">
                         <label class="form-label fw-medium"><?= __('category') ?></label>
                         <select class="form-select" name="category" id="serviceCategoryField">
-                            <option value="wash">Car Wash</option>
-                            <option value="oil">Oil Change</option>
-                            <option value="detail">Detailing & Polish</option>
+                            <option value="wash"><?= __('cat_wash') ?></option>
+                            <option value="oil"><?= __('cat_oil') ?></option>
+                            <option value="detail"><?= __('cat_detail') ?></option>
                         </select>
                     </div>
                     <div class="row">
@@ -128,7 +128,7 @@ use App\Core\Csrf;
                     <div class="mb-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" name="active" value="1" id="serviceActiveField" checked>
-                            <label class="form-check-label fw-medium" for="serviceActiveField">Active (Enabled on systems)</label>
+                            <label class="form-check-label fw-medium" for="serviceActiveField"><?= __('service_active_label') ?></label>
                         </div>
                     </div>
                 </div>

@@ -10,9 +10,9 @@
                 <div class="mb-4">
                     <label class="form-label small fw-medium"><?= __('active_branch') ?></label>
                     <select class="form-select" disabled>
-                        <option>Riyadh Main Branch (Olaya Street)</option>
-                        <option>Jeddah North Branch (King Road)</option>
-                        <option>Dammam Central Branch (Khobar Road)</option>
+                        <option><?= __('branch_riyadh') ?></option>
+                        <option><?= __('branch_jeddah') ?></option>
+                        <option><?= __('branch_dammam') ?></option>
                     </select>
                     <small class="text-muted text-xs"><?= __('branch_locked_hint') ?></small>
                 </div>

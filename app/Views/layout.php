@@ -37,8 +37,8 @@ $user = $_SESSION['user'] ?? ['name' => 'Staff', 'role' => 'employee'];
                 <div class="d-flex align-items-center gap-2 mb-4 mt-2">
                     <div class="stat-icon bg-primary bg-opacity-10 text-white rounded-circle"><i class="bi bi-car-front-fill fs-4 text-primary"></i></div>
                     <div>
-                        <div class="fw-bold text-white fs-5">Car Stashen</div>
-                        <small class="text-white-50">ERP v1.2</small>
+                        <div class="fw-bold text-white fs-5"><?= __('brand_name') ?></div>
+                        <small class="text-white-50"><?= __('erp_version') ?></small>
                     </div>
                 </div>
                 <nav class="nav flex-column gap-1">
@@ -103,7 +103,7 @@ $user = $_SESSION['user'] ?? ['name' => 'Staff', 'role' => 'employee'];
                     
                     <div class="d-flex align-items-center gap-2 d-md-none">
                         <i class="bi bi-car-front-fill text-primary fs-3"></i>
-                        <span class="fw-bold">Car Stashen</span>
+                        <span class="fw-bold"><?= __('brand_name') ?></span>
                     </div>
 
                     <div class="d-none d-lg-block">

@@ -16,6 +16,18 @@ return [
     'premium_car_wash'       => 'Premium car wash and oil change management dashboard',
     'logout'                 => 'Logout',
     'copyright'              => '© 2026 Car Stashen ERP. All rights reserved.',
+    'email_placeholder'      => 'name@carstashen.com',
+    'password_placeholder_login' => '••••••••',
+    'brand_name'             => 'Car Stashen',
+    'erp_version'            => 'ERP v1.2',
+    'service_label'          => 'Service',
+    'product_label'          => 'Product',
+    'customer_label'         => 'Customer',
+    'payment_label'          => 'Payment',
+    'branch_name'            => 'Olaya Branch, Riyadh',
+    'branch_phone'           => 'Tel: +966500111111',
+    'notes_placeholder'      => 'Instructions / vehicle issues...',
+    'network_error'          => 'Network error. Please try again.',
 
     // ── Auth ───────────────────────────────────────────────────────────────
     'welcome_back'           => 'Welcome back',
@@ -285,6 +297,9 @@ return [
     'language'               => 'Language',
     'light'                  => 'Light',
     'dark'                   => 'Dark',
+    'branch_riyadh'          => 'Riyadh Main Branch (Olaya Street)',
+    'branch_jeddah'          => 'Jeddah North Branch (King Road)',
+    'branch_dammam'          => 'Dammam Central Branch (Khobar Road)',
 
     // ── User Management ───────────────────────────────────────────────────
     'new_user'               => 'New User',

@@ -7,20 +7,20 @@ use App\Core\Csrf;
         <div class="card card-soft h-100">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0"><i class="bi bi-grid-fill me-2 text-primary"></i>Items Catalog</h5>
-                    <input type="text" class="form-control form-control-sm" style="max-width: 220px;" placeholder="Search catalog..." id="posCatalogSearch">
+                    <h5 class="fw-bold mb-0"><i class="bi bi-grid-fill me-2 text-primary"></i><?= __('items_catalog') ?></h5>
+                    <input type="text" class="form-control form-control-sm" style="max-width: 220px;" placeholder="<?= __('search_catalog') ?>" id="posCatalogSearch">
                 </div>
                 
                 <!-- Category Tabs -->
                 <ul class="nav nav-pills nav-fill gap-2 mb-3 bg-body-tertiary p-1 rounded-3" id="posCategoryTabs">
                     <li class="nav-item">
-                        <button class="nav-link active btn-sm" onclick="filterPOSCatalog('all')">All</button>
+                        <button class="nav-link active btn-sm" onclick="filterPOSCatalog('all')"><?= __('all') ?></button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link btn-sm" onclick="filterPOSCatalog('service')">Services</button>
+                        <button class="nav-link btn-sm" onclick="filterPOSCatalog('service')"><?= __('service_tab') ?></button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link btn-sm" onclick="filterPOSCatalog('product')">Products</button>
+                        <button class="nav-link btn-sm" onclick="filterPOSCatalog('product')"><?= __('product_tab') ?></button>
                     </li>
                 </ul>
 
@@ -31,7 +31,7 @@ use App\Core\Csrf;
                             <div class="border p-3 rounded-3 h-100 d-flex flex-column justify-content-between shadow-sm bg-body">
                                 <div>
                                     <div class="d-flex justify-content-between mb-1">
-                                        <span class="badge bg-primary bg-opacity-10 text-primary text-xs">Service</span>
+                                        <span class="badge bg-primary bg-opacity-10 text-primary text-xs"><?= __('service_label') ?></span>
                                         <small class="text-muted"><i class="bi bi-clock me-1"></i><?= $s->durationMinutes ?> min</small>
                                     </div>
                                     <h6 class="fw-bold text-dark mb-2"><?= htmlspecialchars($s->name) ?></h6>
@@ -50,18 +50,18 @@ use App\Core\Csrf;
                             <div class="border p-3 rounded-3 h-100 d-flex flex-column justify-content-between shadow-sm bg-body">
                                 <div>
                                     <div class="d-flex justify-content-between mb-1">
-                                        <span class="badge bg-success bg-opacity-10 text-success text-xs">Product</span>
-                                        <small class="text-muted">Stock: <?= $i['stock_quantity'] ?></small>
+                                        <span class="badge bg-success bg-opacity-10 text-success text-xs"><?= __('product_label') ?></span>
+                                        <small class="text-muted"><?= __('stock_label') ?>: <?= $i['stock_quantity'] ?></small>
                                     </div>
                                     <h6 class="fw-bold text-dark mb-2"><?= htmlspecialchars($i['name']) ?></h6>
-                                    <small class="text-muted text-xs d-block mb-1">Barcode: <?= htmlspecialchars($i['barcode']) ?></small>
+                                    <small class="text-muted text-xs d-block mb-1"><?= __('barcode') ?>: <?= htmlspecialchars($i['barcode']) ?></small>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
                                     <span class="fw-bold text-success">$<?= number_format((float) $i['unit_price'], 2) ?></span>
                                     <?php if ($i['stock_quantity'] > 0): ?>
                                         <button class="btn btn-outline-success btn-sm rounded-circle p-1" style="width:30px; height:30px; display:inline-flex; align-items:center; justify-content:center;" onclick="addToCart(<?= $i['id'] ?>, 'product', '<?= htmlspecialchars(addslashes($i['name'])) ?>', <?= (float) $i['unit_price'] ?>)"><i class="bi bi-plus"></i></button>
                                     <?php else: ?>
-                                        <span class="text-danger text-xs fw-bold">Out of stock</span>
+                                        <span class="text-danger text-xs fw-bold"><?= __('out_of_stock') ?></span>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ use App\Core\Csrf;
                         <div class="mb-3">
                             <label class="form-label small fw-medium"><?= __('select_customer') ?></label>
                             <select class="form-select" name="customer_id" required>
-                                <option value="">-- Select Customer (Required) --</option>
+                                <option value=""><?= __('select_customer_req') ?></option>
                                 <?php foreach ($customers as $c): ?>
                                     <option value="<?= $c->id ?>"><?= htmlspecialchars($c->fullName) ?> (<?= htmlspecialchars($c->phone) ?>)</option>
                                 <?php endforeach; ?>
@@ -97,14 +97,14 @@ use App\Core\Csrf;
 
                         <!-- Cart Items Container -->
                         <div class="pos-cart-list border rounded-3 p-2 bg-body-tertiary mb-3">
-                            <div class="text-center text-muted py-4 small" id="emptyCartMessage">Cart is empty. Click items on left to add.</div>
+                            <div class="text-center text-muted py-4 small" id="emptyCartMessage"><?= __('cart_empty') ?></div>
                             <table class="table table-sm align-middle d-none" id="cartTable">
                                 <thead>
                                     <tr>
-                                        <th>Item</th>
-                                        <th style="width:80px;">Qty</th>
-                                        <th>Price</th>
-                                        <th class="text-end">Action</th>
+                                        <th><?= __('item') ?></th>
+                                        <th style="width:80px;"><?= __('qty') ?></th>
+                                        <th><?= __('price') ?></th>
+                                        <th class="text-end"><?= __('action') ?></th>
                                     </tr>
                                 </thead>
                                 <tbody id="cartTableBody">
@@ -176,32 +176,32 @@ use App\Core\Csrf;
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-printer-fill me-2"></i>Sale Transaction Invoice</h5>
+                    <h5 class="modal-title fw-bold"><i class="bi bi-printer-fill me-2"></i><?= __('sale_invoice_title') ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body" id="printableReceiptArea">
                     <div class="text-center mb-4">
-                        <h4 class="fw-bold">CAR STASHEN ERP</h4>
-                        <p class="text-muted small">Olaya Branch, Riyadh<br>Tel: +966500111111</p>
+                        <h4 class="fw-bold"><?= __('app_name') ?></h4>
+                        <p class="text-muted small"><?= __('branch_name') ?><br><?= __('branch_phone') ?></p>
                         <div class="border-top border-bottom py-2 mt-2">
-                            <div class="fw-semibold">TAX INVOICE / RECEIPT</div>
-                            <small class="text-muted">No: <?= htmlspecialchars($r['invoice_no']) ?></small><br>
-                            <small class="text-muted">Date: <?= htmlspecialchars($r['date']) ?></small>
+                            <div class="fw-semibold"><?= __('tax_invoice_receipt') ?></div>
+                            <small class="text-muted"><?= __('invoice_no') ?>: <?= htmlspecialchars($r['invoice_no']) ?></small><br>
+                            <small class="text-muted"><?= __('date') ?>: <?= htmlspecialchars($r['date']) ?></small>
                         </div>
                     </div>
 
                     <div class="mb-3 small">
-                        <strong>Customer:</strong> <?= htmlspecialchars($r['customer_name']) ?><br>
-                        <strong>Phone:</strong> <?= htmlspecialchars($r['customer_phone']) ?><br>
-                        <strong>Payment:</strong> <?= htmlspecialchars(strtoupper($r['payment_method'])) ?>
+                        <strong><?= __('receipt_customer') ?>:</strong> <?= htmlspecialchars($r['customer_name']) ?><br>
+                        <strong><?= __('receipt_phone') ?>:</strong> <?= htmlspecialchars($r['customer_phone']) ?><br>
+                        <strong><?= __('receipt_payment') ?>:</strong> <?= htmlspecialchars(strtoupper($r['payment_method'])) ?>
                     </div>
 
                     <table class="table table-sm table-borderless text-sm mb-4">
                         <thead>
                             <tr class="border-bottom">
-                                <th>Item</th>
-                                <th class="text-center">Qty</th>
-                                <th class="text-end">Price</th>
+                                <th><?= __('item') ?></th>
+                                <th class="text-center"><?= __('qty') ?></th>
+                                <th class="text-end"><?= __('price') ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -217,34 +217,34 @@ use App\Core\Csrf;
 
                     <div class="border-top pt-2 text-sm">
                         <div class="d-flex justify-content-between mb-1">
-                            <span>Subtotal:</span>
+                            <span><?= __('subtotal') ?>:</span>
                             <span>$<?= number_format($r['subtotal'], 2) ?></span>
                         </div>
                         <div class="d-flex justify-content-between mb-1">
-                            <span>VAT (15%):</span>
+                            <span><?= __('vat_15') ?>:</span>
                             <span>$<?= number_format($r['tax'], 2) ?></span>
                         </div>
                         <?php if ($r['discount'] > 0): ?>
                             <div class="d-flex justify-content-between mb-1 text-danger">
-                                <span>Discount:</span>
+                                <span><?= __('discount') ?>:</span>
                                 <span>-$<?= number_format($r['discount'], 2) ?></span>
                             </div>
                         <?php endif; ?>
                         <div class="d-flex justify-content-between fw-bold border-top pt-2 fs-6">
-                            <span>TOTAL:</span>
+                            <span><?= __('receipt_total') ?>:</span>
                             <span>$<?= number_format($r['total'], 2) ?></span>
                         </div>
                     </div>
 
                     <div class="border-top border-secondary border-opacity-10 mt-3 pt-3 text-center small text-muted">
-                        Earned: <?= $r['points_earned'] ?> loyalty points<br>
-                        Total loyalty account balance: <?= $r['new_points'] ?> points<br>
-                        <strong class="text-dark d-block mt-2">Thank you for your business!</strong>
+                        <?= __('loyalty_earned') ?>: <?= $r['points_earned'] ?> <?= __('loyalty_points_unit') ?><br>
+                        <?= __('loyalty_balance') ?>: <?= $r['new_points'] ?> <?= __('points_unit') ?><br>
+                        <strong class="text-dark d-block mt-2"><?= __('thank_you') ?></strong>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" onclick="printReceipt()"><i class="bi bi-printer me-1"></i>Print Invoice</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __('close') ?></button>
+                    <button class="btn btn-primary" onclick="printReceipt()"><i class="bi bi-printer me-1"></i><?= __('print_invoice') ?></button>
                 </div>
             </div>
         </div>
